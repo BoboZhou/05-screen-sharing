@@ -4,14 +4,16 @@ chrome.runtime.onConnect.addListener(function (port) {
         if(!sourceId || !sourceId.length) {
             port.postMessage('PermissionDeniedError');
         } else {
-            port.postMessage({ sourceId: sourceId });
+            port.postMessage({ sourceId: sourceId,
+            type:'onResponseReqSouId'});
         }
     }
 
     function onMessage( msg ) {
 
         if( msg === 'test' ) {
-            port.postMessage({result:'ok'});;
+            port.postMessage({result:'ok',
+            type:'testMessage'});;
         }
         if( msg !== 'requestScreenSourceId' ) {
             return;
